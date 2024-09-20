@@ -1,0 +1,33 @@
+name: goistocker
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^2.0.0+4  # ローカルデータベース用
+  path_provider: ^2.0.10  # データベースファイルの保存場所を取得
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^4.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+

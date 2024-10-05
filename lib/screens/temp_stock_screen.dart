@@ -12,15 +12,16 @@ class TempStockScreen extends StatefulWidget {
 
 class _TempStockScreenState extends State<TempStockScreen> {
   final TextEditingController _meaningController = TextEditingController();
-  String? _selectedGenre; // 選択されたジャンル
+  String? _selectedGenre;
 
   @override
   void initState() {
     super.initState();
-    // デフォルトで最初のジャンルを選択（未指定が存在する場合は未指定）
+    // デフォルトで最初のジャンルを選択
     _selectedGenre = widget.genres.isNotEmpty ? widget.genres[0] : '未指定';
   }
 
+  // ポップアップウィンドウの表示
   void _showPopup(Map<String, dynamic> vocab) {
     showDialog(
       context: context,
@@ -38,6 +39,7 @@ class _TempStockScreenState extends State<TempStockScreen> {
               DropdownButton<String>(
                 value: _selectedGenre, // 選択されたジャンルを反映
                 hint: Text('ジャンルを選択'),
+                isExpanded: true, // ドロップダウンの幅を拡大して使いやすくする
                 items:
                     widget.genres.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
@@ -47,7 +49,7 @@ class _TempStockScreenState extends State<TempStockScreen> {
                 }).toList(),
                 onChanged: (String? newValue) {
                   setState(() {
-                    _selectedGenre = newValue; // 選択されたジャンルを更新
+                    _selectedGenre = newValue; // ジャンルの選択を更新
                   });
                 },
               ),
@@ -74,6 +76,7 @@ class _TempStockScreenState extends State<TempStockScreen> {
     );
   }
 
+  // ストック処理完了時の確認ダイアログ
   void _showStockConfirmation() {
     showDialog(
       context: context,
@@ -91,7 +94,7 @@ class _TempStockScreenState extends State<TempStockScreen> {
               child: Text('ストック画面へ'),
               onPressed: () {
                 Navigator.of(context).pop(); // 現在のダイアログを閉じる
-                Navigator.of(context).pushNamed('/stock'); // ストック画面へ
+                Navigator.of(context).pushNamed('/stock'); // ストック画面へ遷移
               },
             ),
           ],
